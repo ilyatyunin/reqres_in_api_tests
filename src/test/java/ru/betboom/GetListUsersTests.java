@@ -8,7 +8,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.is;
 
 @DisplayName("Получение списка пользователей на второй странице")
-public class GetListUsersTests {
+public class GetListUsersTests extends TestBase {
 
     @DisplayName("Успешное получение списка пользователей")
     @Test
@@ -16,7 +16,7 @@ public class GetListUsersTests {
         given()
                 .log().uri()
                 .when()
-                .get("https://reqres.in/api/users?page=2")
+                .get("/users?page=2")
                 .then()
                 .log().status()
                 .log().body()
@@ -31,7 +31,7 @@ public class GetListUsersTests {
         given()
                 .log().uri()
                 .when()
-                .post("https://reqres.in/api/users?page=2")
+                .post("/users?page=2")
                 .then()
                 .log().status()
                 .statusCode(415);

@@ -9,7 +9,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.is;
 
 @DisplayName("Регистрация пользователя")
-public class RegisterUserTests {
+public class RegisterUserTests extends TestBase {
 
     @DisplayName("Успешная регистрация пользователя")
     @Test
@@ -22,7 +22,7 @@ public class RegisterUserTests {
                 .contentType(JSON)
                 .body(registerBody)
                 .when()
-                .post("https://reqres.in/api/register") // get -- выполнение запроса
+                .post("/register") // get -- выполнение запроса
                 .then()
                 .log().status()
                 .log().body()
@@ -43,7 +43,7 @@ public class RegisterUserTests {
                 .contentType(JSON)
                 .body(registerBody)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
                 .then()
                 .log().status()
                 .log().body()
@@ -56,7 +56,7 @@ public class RegisterUserTests {
     void fatalRegister415Test() {
         given()
                 .when()
-                .post("https://reqres.in/api/register") // get -- выполнение запроса
+                .post("/register") // get -- выполнение запроса
                 .then()
                 .log().status()
                 .statusCode(415);
