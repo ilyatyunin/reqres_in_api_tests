@@ -1,39 +1,40 @@
 package ru.betboom;
 
+import models.getUsers.GetUsersResponse200Model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static specs.GetUsersSpecs.getUsersRequestNoDataSpec;
+import static specs.GetUsersSpecs.getUsersResponse200Spec;
 
 @DisplayName("Получение списка пользователей на второй странице")
-public class GetListUsersTests extends TestBase {
+public class GetListUsersTests {
 
     @DisplayName("Успешное получение списка пользователей")
     @Test
     void successGetListUsersTest() {
-        given()
-                .log().uri()
+        GetUsersResponse200Model getUserResponse200Model =
+                given()
+                .spec(getUsersRequestNoDataSpec)
                 .when()
                 .get("/users?page=2")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .body(matchesJsonSchemaInClasspath("schemes/list-users-scheme.json"))
-                .body("page", is(2));
+                .spec(getUsersResponse200Spec)
+                .extract().as(GetUsersResponse200Model.class);
+        assertEquals(2,getUserResponse200Model.getPage());
     }
 
-    @DisplayName("Ошибка 415 при получении списка пользователей")
+    @DisplayName("Ошибка 204 при получении списка пользователей")
     @Test
-    void fatalGetListUsers415Test() {
+    void fatalGetListUsers204Test() {
         given()
-                .log().uri()
+                .spec(getUsersRequestNoDataSpec)
                 .when()
-                .post("/users?page=2")
+                .delete("/users?page=2")
                 .then()
                 .log().status()
-                .statusCode(415);
+                .statusCode(204);
     }
 }

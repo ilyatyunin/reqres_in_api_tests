@@ -1,62 +1,63 @@
 package ru.betboom;
 
+import models.register.RegisterBodyModel;
+import models.register.RegisterResponse200Model;
+import models.register.RegisterResponse400Model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static specs.RegisterSpecs.*;
 
 @DisplayName("Регистрация пользователя")
-public class RegisterUserTests extends TestBase {
+public class RegisterUserTests {
 
     @DisplayName("Успешная регистрация пользователя")
     @Test
     void successfullRegisterTest() {
-        String registerBody = "{\"email\": \"eve.holt@reqres.in\", \"password\": \"pistol\"}";
+        RegisterBodyModel registerBody = new RegisterBodyModel();
+        registerBody.setEmail("eve.holt@reqres.in");
+        registerBody.setPassword("pistol");
 
-        given()
-                .log().uri()
-                .log().body()
-                .contentType(JSON)
+        RegisterResponse200Model registerResponse200 =
+                given()
+                .spec(registerRequestSpec)
                 .body(registerBody)
                 .when()
-                .post("/register") // get -- выполнение запроса
+                .post("/register")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .body(matchesJsonSchemaInClasspath("schemes/register-response-scheme.json"))
-                .body("id", is(4))
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .spec(registerResponse200Spec)
+                .extract().as(RegisterResponse200Model.class);
+        assertEquals("QpwL5tke4Pnpja7X4", registerResponse200.getToken());
+        assertEquals(4, registerResponse200.getId());
     }
 
     @DisplayName("Ошибка 400 при регистрации пользователя")
     @Test
     void fatalRegister400Test() {
-        String registerBody = "{\"email\": \"fatal@reqres.in\", \"password\": \"pistol\"}";
+        RegisterBodyModel registerBody = new RegisterBodyModel();
+        registerBody.setEmail("fatal@reqres.in");
+        registerBody.setPassword("pistol");
 
-        given()
-                .log().uri()
-                .log().body()
-                .contentType(JSON)
+        RegisterResponse400Model registerResponse400 =
+                given()
+                .spec(registerRequestSpec)
                 .body(registerBody)
                 .when()
                 .post("/register")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
-                .body("error", is("Note: Only defined users succeed registration"));
+                .spec(registerResponse400Spec)
+                .extract().as(RegisterResponse400Model.class);
+        assertEquals("Note: Only defined users succeed registration", registerResponse400.getError());
     }
-
-    @DisplayName("Ошибка 415 при регистрации пользователя")
+    @DisplayName("Ошибка 415 при получении списка пользователей")
     @Test
-    void fatalRegister415Test() {
-        given()
+    void fatalGetListUsers415Test() {
+                given()
+                .spec(registerRequestNoDataSpec)
                 .when()
-                .post("/register") // get -- выполнение запроса
+                .post("/users?page=2")
                 .then()
                 .log().status()
                 .statusCode(415);
