@@ -37,4 +37,9 @@ public class RegisterSpecs {
             .expectStatusCode(400)
             .expectBody("error", notNullValue())
             .build();
+
+    public static ResponseSpecification registerResponse415Spec = new ResponseSpecBuilder()
+            .log(STATUS)
+            .expectStatusCode(415)
+            .build();
 }

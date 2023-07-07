@@ -6,6 +6,7 @@ import models.register.RegisterResponse400Model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specs.RegisterSpecs.*;
@@ -20,7 +21,7 @@ public class RegisterUserTests {
         registerBody.setEmail("eve.holt@reqres.in");
         registerBody.setPassword("pistol");
 
-        RegisterResponse200Model registerResponse200 =
+        RegisterResponse200Model registerResponse200 = step("Send request", () ->
                 given()
                 .spec(registerRequestSpec)
                 .body(registerBody)
@@ -28,8 +29,9 @@ public class RegisterUserTests {
                 .post("/register")
                 .then()
                 .spec(registerResponse200Spec)
-                .extract().as(RegisterResponse200Model.class);
-        assertEquals("QpwL5tke4Pnpja7X4", registerResponse200.getToken());
+                .extract().as(RegisterResponse200Model.class));
+        step("Verify results", () ->
+        assertEquals("QpwL5tke4Pnpja7X4", registerResponse200.getToken()));
         assertEquals(4, registerResponse200.getId());
     }
 
@@ -40,7 +42,7 @@ public class RegisterUserTests {
         registerBody.setEmail("fatal@reqres.in");
         registerBody.setPassword("pistol");
 
-        RegisterResponse400Model registerResponse400 =
+        RegisterResponse400Model registerResponse400 = step("Send request", () ->
                 given()
                 .spec(registerRequestSpec)
                 .body(registerBody)
@@ -48,18 +50,20 @@ public class RegisterUserTests {
                 .post("/register")
                 .then()
                 .spec(registerResponse400Spec)
-                .extract().as(RegisterResponse400Model.class);
-        assertEquals("Note: Only defined users succeed registration", registerResponse400.getError());
+                .extract().as(RegisterResponse400Model.class));
+        step("Verify results", () ->
+        assertEquals("Note: Only defined users succeed registration", registerResponse400.getError()));
     }
+
     @DisplayName("Ошибка 415 при получении списка пользователей")
     @Test
     void fatalGetListUsers415Test() {
+        step("Check not found response", () ->
                 given()
                 .spec(registerRequestNoDataSpec)
                 .when()
                 .post("/users?page=2")
                 .then()
-                .log().status()
-                .statusCode(415);
+                .spec(registerResponse415Spec));
     }
 }

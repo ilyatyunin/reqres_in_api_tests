@@ -5,8 +5,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.with;
-import static io.restassured.filter.log.LogDetail.BODY;
-import static io.restassured.filter.log.LogDetail.STATUS;
+import static io.restassured.filter.log.LogDetail.*;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.notNullValue;
@@ -23,5 +22,9 @@ public class GetUsersSpecs {
             .expectStatusCode(200)
             .expectBody("page", notNullValue())
             .expectBody(matchesJsonSchemaInClasspath("schemes/list-users-scheme.json"))
+            .build();
+    public static ResponseSpecification getUsersResponse204Spec = new ResponseSpecBuilder()
+            .log(ALL)
+            .expectStatusCode(204)
             .build();
 }
