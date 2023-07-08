@@ -1,5 +1,6 @@
 package models.getUsers;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -7,10 +8,17 @@ import java.util.List;
 @Data
 public class GetUsersResponse200Model {
     Integer page;
-    Integer per_page;
+
+    @JsonProperty("per_page")
+    Integer perPage;
+
     Integer total;
-    Integer total_pages;
+
+    @JsonProperty("total_pages")
+    Integer totalPages;
+
     List<UserDataList> data;
+
     SupportDataObject support;
 }
 
