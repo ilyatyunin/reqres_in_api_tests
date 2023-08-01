@@ -1,4 +1,4 @@
-package ru.betboom;
+package in.reqres;
 
 import models.getUsers.GetUsersResponse200Model;
 import org.junit.jupiter.api.DisplayName;
@@ -9,10 +9,10 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specs.GetUsersSpecs.*;
 
-@DisplayName("Получение списка пользователей на второй странице")
+@DisplayName("Получение списка пользователей")
 public class GetListUsersTests {
 
-    @DisplayName("Успешное получение списка пользователей")
+    @DisplayName("Успешное получение списка пользователей на второй странице")
     @Test
     void successGetListUsersTest() {
         GetUsersResponse200Model getUserResponse200Model = step("Send request", () ->

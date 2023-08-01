@@ -1,4 +1,4 @@
-package ru.betboom;
+package in.reqres;
 
 import models.register.RegisterBodyModel;
 import models.register.RegisterResponse200Model;
