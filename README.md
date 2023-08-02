@@ -53,10 +53,7 @@ gradle clean test
 
 ## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logo/Jenkins.svg"> Сборка в Jenkins
 ### Параметры сборки
-* <code>BROWSER</code> — выбор браузера. Значение по-умолчанию — <code>chrome</code>.
-* <code>BROWSER_VERSION</code> — версия браузера. Значение по-умолчанию — <code>100.0</code>.
-* <code>BROWSER_SIZE</code> — размер окна браузера. Значение по-умолчанию — <code>1920x1080</code>.
-* <code>SELENOID_URL</code> — адрес удалённого браузера.
+* <code>TASK</code> — выбор запуска тестов. Значение по-умолчанию — <code>chrome</code> — запуск всех тестов.
 
 <p align="center">
 <img title="Jenkins Build" src="media/screens/JenkinsBuild.png">
@@ -67,13 +64,10 @@ gradle clean test
 <img title="Allure Overview" src="media/screens/AllureOverview.png">
 </p>
 
-### Результат выполнения теста
-Содержание:
-* Шаги теста
-* Скриншот страницы на последнем шаге
-* Page Source
-* Логи браузерной консоли
-* Видео прогона автотестов
+### Результат выполнения теста содержит:
+
+* Request с вложением ```Метод запроса, Адрес, Headers, Body, Curl```
+* Response с вложением ```Status code, Headers, Body```
 
 <p align="center">
 <img title="Test Results in Alure" src="media/screens/AllureSuites.png">
@@ -88,22 +82,9 @@ gradle clean test
 <img title="Allure TestOps DashBoard" src="media/screens/AllureDashboards.png">
 </p>
 
-На вкладке <code>Launches</code> можно увидеть:
-- Результаты запусков автоматизированных тестов
-- Результаты прохождения ручных тест-кейсов
+На вкладке <code>Launches</code> можно увидеть результаты запусков автоматизированных тестов
 <p align="center">
 <img title="Allure TestOps DashBoard" src="media/screens/LaunchesTestOps.png">
-</p>
-
-Результаты выполнения отдельных тестов:
-* Шаги теста
-* Скриншот страницы на последнем шаге
-* Page Source
-* Логи браузерной консоли
-* Видео прогона автотестов
-
-<p align="center">
-<img title="Allure TestOps DashBoard" src="media/screens/AllureTestCases.png">
 </p>
 
 ## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logo/Jira.svg"> Интеграция с Jira
@@ -117,9 +98,4 @@ gradle clean test
 <p align="center">
 <img title="Allure TestOps DashBoard" src="media/screens/Telegram.png" width="50%" height="50%">
 
-</p>
-
-### <img width="4%" style="vertical-align:middle" title="Selenoid" src="media/logo/Selenoid.svg"> Видео пример запуска тестов
-<p align="center">
-  <img title="Selenoid Video" src="media/screens/video.gif">
 </p>
