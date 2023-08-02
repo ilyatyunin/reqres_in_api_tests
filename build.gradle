@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+def allureVersion = "2.23.0",
+    restAssuredVersion = "5.3.1",
+    validatorRestAssuredVersion = "5.3.1",
+    jupiterVersion = "5.9.3"
 allure {
     report {
         version.set("2.23.0")
@@ -27,13 +31,53 @@ allure {
 
 dependencies {
     testImplementation (
-            'org.junit.jupiter:junit-jupiter:5.9.3',
-            "io.rest-assured:rest-assured:5.3.1",
-            "io.rest-assured:json-schema-validator:5.3.1",
-            'io.qameta.allure:allure-rest-assured:2.23.0'
+            "org.junit.jupiter:junit-jupiter:${jupiterVersion}",
+            "io.rest-assured:rest-assured:${restAssuredVersion}",
+            "io.rest-assured:json-schema-validator:${validatorRestAssuredVersion}",
+            "io.qameta.allure:allure-rest-assured:${allureVersion}"
     )
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+compileTestJava {
+    options.encoding = 'UTF-8'
 }
 
 test {
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task positive_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("positive")
+    }
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task negative_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("negative")
+    }
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
