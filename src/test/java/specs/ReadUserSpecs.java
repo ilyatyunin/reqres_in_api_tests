@@ -11,27 +11,24 @@ import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class RegisterSpecs {
-    public static RequestSpecification registerRequestSpec = with()
-            .log().uri()
-            .log().body()
+public class ReadUserSpecs {
+    public static RequestSpecification readUserRequestSpec = with()
             .contentType(JSON)
             .baseUri("https://reqres.in")
             .basePath("/api");
 
-    public static ResponseSpecification registerResponse200Spec = new ResponseSpecBuilder()
+    public static ResponseSpecification readUserResponse200Spec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
             .expectStatusCode(200)
-            .expectBody("token", notNullValue())
-            .expectBody("id", notNullValue())
-            .expectBody(matchesJsonSchemaInClasspath("schemes/register-response-scheme.json"))
+            .expectBody("data", notNullValue())
+            .expectBody("support", notNullValue())
+            .expectBody(matchesJsonSchemaInClasspath("schemes/read-user-response-scheme.json"))
             .build();
 
-    public static ResponseSpecification registerResponse400Spec = new ResponseSpecBuilder()
+    public static ResponseSpecification readUserResponse404Spec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
-            .expectStatusCode(400)
-            .expectBody("error", notNullValue())
+            .expectStatusCode(404)
             .build();
 }

@@ -11,27 +11,17 @@ import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class RegisterSpecs {
-    public static RequestSpecification registerRequestSpec = with()
-            .log().uri()
-            .log().body()
+public class UpdateUserSpecs {
+    public static RequestSpecification updateUserRequestSpec = with()
             .contentType(JSON)
             .baseUri("https://reqres.in")
             .basePath("/api");
 
-    public static ResponseSpecification registerResponse200Spec = new ResponseSpecBuilder()
+    public static ResponseSpecification updateUserResponse200Spec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
             .expectStatusCode(200)
-            .expectBody("token", notNullValue())
-            .expectBody("id", notNullValue())
-            .expectBody(matchesJsonSchemaInClasspath("schemes/register-response-scheme.json"))
-            .build();
-
-    public static ResponseSpecification registerResponse400Spec = new ResponseSpecBuilder()
-            .log(STATUS)
-            .log(BODY)
-            .expectStatusCode(400)
-            .expectBody("error", notNullValue())
+            .expectBody("updatedAt", notNullValue())
+            .expectBody(matchesJsonSchemaInClasspath("schemes/update-user-response-scheme.json"))
             .build();
 }

@@ -2,6 +2,8 @@ package models.getUsers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import models.userData.SupportDataObject;
+import models.userData.UserDataList;
 
 import java.util.List;
 

@@ -17,7 +17,7 @@ public class GetListUsersTests {
     void successGetListUsersTest() {
         GetUsersResponse200Model getUserResponse200Model = step("Send request", () ->
                 given()
-                        .spec(getUsersRequestNoDataSpec)
+                        .spec(getUsersRequestWithJsonSpec)
                         .when()
                         .get("/users?page=2")
                         .then()
@@ -28,15 +28,16 @@ public class GetListUsersTests {
         assertEquals(2,getUserResponse200Model.getPage()));
     }
 
-    @DisplayName("Ошибка 204 при получении списка пользователей")
+    @DisplayName("Ошибка 415 при получении списка пользователей")
     @Test
-    void fatalGetListUsers204Test() {
+    void fatalGetListUsers415Test() {
         step("Check not found response", () ->
                 given()
-                .spec(getUsersRequestNoDataSpec)
-                .when()
-                .delete("/users?page=2")
-                .then()
-                .spec(getUsersResponse204Spec));
+                        .spec(getUsersRequestNoDataSpec)
+                        .when()
+                        .post("/users?page=2")
+                        .then()
+                        .spec(getUserResponse415Spec));
     }
 }
+

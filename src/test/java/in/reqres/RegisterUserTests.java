@@ -30,9 +30,10 @@ public class RegisterUserTests {
                 .then()
                 .spec(registerResponse200Spec)
                 .extract().as(RegisterResponse200Model.class));
-        step("Verify results", () ->
-        assertEquals("QpwL5tke4Pnpja7X4", registerResponse200.getToken()));
+        step("Verify results", () -> {
+        assertEquals("QpwL5tke4Pnpja7X4", registerResponse200.getToken());
         assertEquals(4, registerResponse200.getId());
+        });
     }
 
     @DisplayName("Ошибка 400 при регистрации пользователя")
@@ -40,7 +41,6 @@ public class RegisterUserTests {
     void fatalRegister400Test() {
         RegisterBodyModel registerBody = new RegisterBodyModel();
         registerBody.setEmail("fatal@reqres.in");
-        registerBody.setPassword("pistol");
 
         RegisterResponse400Model registerResponse400 = step("Send request", () ->
                 given()
@@ -52,18 +52,6 @@ public class RegisterUserTests {
                 .spec(registerResponse400Spec)
                 .extract().as(RegisterResponse400Model.class));
         step("Verify results", () ->
-        assertEquals("Note: Only defined users succeed registration", registerResponse400.getError()));
-    }
-
-    @DisplayName("Ошибка 415 при получении списка пользователей")
-    @Test
-    void fatalGetListUsers415Test() {
-        step("Check not found response", () ->
-                given()
-                .spec(registerRequestNoDataSpec)
-                .when()
-                .post("/users?page=2")
-                .then()
-                .spec(registerResponse415Spec));
+        assertEquals("Missing password", registerResponse400.getError()));
     }
 }

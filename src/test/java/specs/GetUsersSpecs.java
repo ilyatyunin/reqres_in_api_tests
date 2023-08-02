@@ -12,19 +12,25 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class GetUsersSpecs {
 
-    public static RequestSpecification getUsersRequestNoDataSpec = with()
+    public static RequestSpecification getUsersRequestWithJsonSpec = with()
             .baseUri("https://reqres.in")
             .basePath("/api")
             .contentType(JSON);
+
+    public static RequestSpecification getUsersRequestNoDataSpec = with()
+            .baseUri("https://reqres.in")
+            .basePath("/api");
+
     public static ResponseSpecification getUsersResponse200Spec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
             .expectStatusCode(200)
             .expectBody("page", notNullValue())
-            .expectBody(matchesJsonSchemaInClasspath("schemes/list-users-scheme.json"))
+            .expectBody(matchesJsonSchemaInClasspath("schemes/list-users-response-scheme.json"))
             .build();
-    public static ResponseSpecification getUsersResponse204Spec = new ResponseSpecBuilder()
-            .log(ALL)
-            .expectStatusCode(204)
+
+    public static ResponseSpecification getUserResponse415Spec = new ResponseSpecBuilder()
+            .log(STATUS)
+            .expectStatusCode(415)
             .build();
 }
