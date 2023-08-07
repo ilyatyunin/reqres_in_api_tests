@@ -33,7 +33,7 @@ reqres.in — является тренировочным ресурсом дл�
 <img width="6%" title="JUnit5" src="media/logo/JUnit5.svg">
 </a>
 <a href="https://rest-assured.io/">
-<img width="6%" title="Selenide" src="media/logo/RestAssured.png">
+<img width="6%" title="Rest-Assured" src="media/logo/RestAssured.png">
 </a>
 <a href="https://github.com/">
 <img width="6%" title="GitHub" src="media/logo/GitHub.svg">
