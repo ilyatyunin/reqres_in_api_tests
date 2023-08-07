@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class RegisterBodyModel {
-    String email;
-    String password;
+    private String email;
+    private String password;
 }

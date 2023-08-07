@@ -14,11 +14,11 @@ import static in.reqres.specs.ReadUsersSpecs.*;
 @DisplayName("Получение списка пользователей")
 public class ReadListUsersTests {
 
-    @DisplayName("Успешное получение списка пользователей на второй странице")
     @Test
     @Tag("positive")
+    @DisplayName("Успешное получение списка пользователей на второй странице")
     void successGetListUsersTest() {
-        ReadUsersResponse200Model getUserResponse200Model = step("Send request", () ->
+        ReadUsersResponse200Model getUserResponse200Model = step("Отправка запроса", () ->
                 given()
                         .spec(getUsersRequestWithJsonSpec)
                         .when()
@@ -27,20 +27,19 @@ public class ReadListUsersTests {
                         .spec(getUsersResponse200Spec)
                         .extract().as(ReadUsersResponse200Model.class)
         );
-        step("Verify results", () -> {
+        step("Проверка результатов ответа", () -> {
             assertEquals(READ_USERS_PAGE, getUserResponse200Model.getPage());
             assertEquals(READ_USERS_PER_PAGE, getUserResponse200Model.getPerPage());
             assertEquals(READ_USERS_TOTAL, getUserResponse200Model.getTotal());
             assertEquals(READ_USERS_TOTAL_PAGES, getUserResponse200Model.getTotalPages());
         });
-
     }
 
-    @DisplayName("Ошибка 415 при получении списка пользователей")
     @Test
     @Tag("negative")
+    @DisplayName("Ошибка 415 при получении списка пользователей")
     void fatalGetListUsers415Test() {
-        step("Check not found response", () ->
+        step("Отправка запроса", () ->
                 given()
                         .spec(getUsersRequestNoDataSpec)
                         .when()

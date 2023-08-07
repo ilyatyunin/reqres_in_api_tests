@@ -6,6 +6,6 @@ import in.reqres.models.userData.UserDataList;
 
 @Data
 public class ReadUserResponse200Model {
-    UserDataList data;
-    SupportDataObject support;
+    private UserDataList data;
+    private SupportDataObject support;
 }

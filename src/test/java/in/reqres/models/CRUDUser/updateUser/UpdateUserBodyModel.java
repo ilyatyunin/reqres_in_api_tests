@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class UpdateUserBodyModel {
-    String name;
-    String job;
+    private String name;
+    private String job;
 }

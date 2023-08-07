@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class RegisterResponse400Model {
-    String error;
+    private String error;
 }

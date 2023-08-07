@@ -23,11 +23,11 @@ import static in.reqres.specs.CRUD.UpdateUserSpecs.updateUserResponse200Spec;
 @DisplayName("CRUD операции над пользователем")
 public class UserCRUDTests {
 
-    @DisplayName("Успешное создание пользователя")
     @Test
     @Tag("positive")
+    @DisplayName("Успешное создание пользователя")
     void successUserCreateTest() {
-        CreateUserResponse201Model createUserResponse201Model = step("Send request", () ->
+        CreateUserResponse201Model createUserResponse201Model = step("Отправка запроса", () ->
                 given()
                         .spec(createUserRequestSpec)
                         .when()
@@ -36,7 +36,7 @@ public class UserCRUDTests {
                         .spec(createUserResponse200Spec)
                         .extract().as(CreateUserResponse201Model.class)
         );
-        step("Verify results", () -> {
+        step("Проверка результатов ответа", () -> {
             assertEquals(getCreateUserTestData().getName(), createUserResponse201Model.getName());
             assertEquals(getCreateUserTestData().getJob(), createUserResponse201Model.getJob());
             assertFalse(createUserResponse201Model.getId().isEmpty());
@@ -44,11 +44,11 @@ public class UserCRUDTests {
         });
     }
 
-    @DisplayName("Успешное чтение пользователя")
     @Test
     @Tag("positive")
+    @DisplayName("Успешное чтение пользователя")
     void successUserReadTest() {
-        ReadUserResponse200Model readUserResponse200Model = step("Send request", () ->
+        ReadUserResponse200Model readUserResponse200Model = step("Отправка запроса", () ->
                 given()
                         .spec(readUserRequestSpec)
                         .when()
@@ -57,7 +57,7 @@ public class UserCRUDTests {
                         .spec(readUserResponse200Spec)
                         .extract().as(ReadUserResponse200Model.class)
         );
-        step("Verify results", () -> {
+        step("Проверка результатов ответа", () -> {
             assertEquals(READ_USER_ID, readUserResponse200Model.getData().getId());
             assertEquals(READ_USER_EMAIL, readUserResponse200Model.getData().getEmail());
             assertEquals(READ_USER_FIRST_NAME, readUserResponse200Model.getData().getFirstName());
@@ -66,11 +66,11 @@ public class UserCRUDTests {
         });
     }
 
-    @DisplayName("Ошибка 404 при чтении пользователя")
     @Test
     @Tag("negative")
+    @DisplayName("Ошибка 404 при чтении пользователя")
     void fatalUserRead404Test() {
-        step("Send request", () ->
+        step("Отправка запроса", () ->
                 given()
                 .spec(readUserRequestSpec)
                 .when()
@@ -80,11 +80,11 @@ public class UserCRUDTests {
         );
     }
 
-    @DisplayName("Успешное обновление данных пользователя")
     @Test
     @Tag("positive")
+    @DisplayName("Успешное обновление данных пользователя")
     void successUserUpdateTest() {
-        UpdateUserResponse200Model updateUserResponse200Model = step("Send request", () ->
+        UpdateUserResponse200Model updateUserResponse200Model = step("Отправка запроса", () ->
             given()
                 .spec(updateUserRequestSpec)
                 .when()
@@ -92,19 +92,19 @@ public class UserCRUDTests {
                 .then()
                 .spec(updateUserResponse200Spec)
                 .extract().as(UpdateUserResponse200Model.class)
-);
-    step("Verify results", () -> {
-        assertEquals(getUpdateUserTestData().getName(), updateUserResponse200Model.getName());
-        assertEquals(getUpdateUserTestData().getJob(), updateUserResponse200Model.getJob());
-        assertFalse(updateUserResponse200Model.getUpdatedAt().isEmpty());
-    });
+        );
+        step("Проверка результатов ответа", () -> {
+            assertEquals(getUpdateUserTestData().getName(), updateUserResponse200Model.getName());
+            assertEquals(getUpdateUserTestData().getJob(), updateUserResponse200Model.getJob());
+            assertFalse(updateUserResponse200Model.getUpdatedAt().isEmpty());
+        });
     }
 
-    @DisplayName("Успешное удаление пользователя")
     @Test
     @Tag("positive")
+    @DisplayName("Успешное удаление пользователя")
     void successUserDeleteTest() {
-        step("Send request", () ->
+        step("Отправка запроса", () ->
                 given()
                         .spec(deleteUserRequestSpec)
                         .when()

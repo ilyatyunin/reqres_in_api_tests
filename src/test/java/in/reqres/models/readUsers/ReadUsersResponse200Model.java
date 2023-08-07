@@ -9,18 +9,18 @@ import java.util.List;
 
 @Data
 public class ReadUsersResponse200Model {
-    Integer page;
+    private Integer page;
 
     @JsonProperty("per_page")
-    Integer perPage;
+    private Integer perPage;
 
-    Integer total;
+    private Integer total;
 
     @JsonProperty("total_pages")
-    Integer totalPages;
+    private Integer totalPages;
 
-    List<UserDataList> data;
+    private List<UserDataList> data;
 
-    SupportDataObject support;
+    private SupportDataObject support;
 }
 

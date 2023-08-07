@@ -19,6 +19,7 @@ public class TestData {
         updateUserBody.setJob("developer");
         return updateUserBody;
     }
+
     public static RegisterBodyModel getSuccessRegisterTestData() {
         RegisterBodyModel registerBody = new RegisterBodyModel();
         registerBody.setEmail("eve.holt@reqres.in");
