@@ -1,8 +1,8 @@
 package in.reqres.tests;
 
-import in.reqres.models.CRUDUser.createUser.CreateUserResponse201Model;
-import in.reqres.models.CRUDUser.readUser.ReadUserResponse200Model;
-import in.reqres.models.CRUDUser.updateUser.UpdateUserResponse200Model;
+import in.reqres.models.crud.createuser.CreateUserResponse201Model;
+import in.reqres.models.crud.readuser.ReadUserResponse200Model;
+import in.reqres.models.crud.updateuser.UpdateUserResponse200Model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -12,13 +12,13 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static in.reqres.specs.CRUD.CreateUserSpecs.createUserRequestSpec;
-import static in.reqres.specs.CRUD.CreateUserSpecs.createUserResponse200Spec;
-import static in.reqres.specs.CRUD.DeleteUserSpecs.deleteUserRequestSpec;
-import static in.reqres.specs.CRUD.DeleteUserSpecs.deleteUserResponse204Spec;
-import static in.reqres.specs.CRUD.ReadUserSpecs.*;
-import static in.reqres.specs.CRUD.UpdateUserSpecs.updateUserRequestSpec;
-import static in.reqres.specs.CRUD.UpdateUserSpecs.updateUserResponse200Spec;
+import static in.reqres.specs.crud.CreateUserSpecs.createUserRequestSpec;
+import static in.reqres.specs.crud.CreateUserSpecs.createUserResponse200Spec;
+import static in.reqres.specs.crud.DeleteUserSpecs.deleteUserRequestSpec;
+import static in.reqres.specs.crud.DeleteUserSpecs.deleteUserResponse204Spec;
+import static in.reqres.specs.crud.ReadUserSpecs.*;
+import static in.reqres.specs.crud.UpdateUserSpecs.updateUserRequestSpec;
+import static in.reqres.specs.crud.UpdateUserSpecs.updateUserResponse200Spec;
 
 @DisplayName("CRUD операции над пользователем")
 public class UserCRUDTests {

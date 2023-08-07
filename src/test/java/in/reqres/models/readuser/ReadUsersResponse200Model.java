@@ -1,9 +1,9 @@
-package in.reqres.models.readUsers;
+package in.reqres.models.readuser;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import in.reqres.models.userData.SupportDataObject;
-import in.reqres.models.userData.UserDataList;
+import in.reqres.models.userdata.SupportDataObject;
+import in.reqres.models.userdata.UserDataList;
 
 import java.util.List;
 

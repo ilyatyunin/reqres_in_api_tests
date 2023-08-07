@@ -1,4 +1,4 @@
-package in.reqres.models.CRUDUser.createUser;
+package in.reqres.models.crud.createuser;
 
 import lombok.Data;
 

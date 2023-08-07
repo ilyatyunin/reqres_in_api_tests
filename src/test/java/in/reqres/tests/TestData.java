@@ -1,7 +1,7 @@
 package in.reqres.tests;
 
-import in.reqres.models.CRUDUser.createUser.CreateUserBodyModel;
-import in.reqres.models.CRUDUser.updateUser.UpdateUserBodyModel;
+import in.reqres.models.crud.createuser.CreateUserBodyModel;
+import in.reqres.models.crud.updateuser.UpdateUserBodyModel;
 import in.reqres.models.register.RegisterBodyModel;
 
 public class TestData {

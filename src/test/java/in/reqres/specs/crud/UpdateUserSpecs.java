@@ -1,4 +1,4 @@
-package in.reqres.specs.CRUD;
+package in.reqres.specs.crud;
 
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
