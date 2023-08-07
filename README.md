@@ -75,7 +75,7 @@ reqres.in — является тренировочным ресурсом дл�
 gradle clean test
 ```
 
-## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logo/Jenkins.svg"> Сборка в Jenkins
+## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logo/Jenkins.svg"> [Сборка в Jenkins](https://jenkins.autotests.cloud/job/api_reqres/)
 ### Параметры сборки
 * <code>TASK</code> — выбор запуска тестов. Значение по-умолчанию — <code>chrome</code> — запуск всех тестов.
 
@@ -83,7 +83,7 @@ gradle clean test
 <img title="Jenkins Build" src="media/screens/JenkinsBuild.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logo/Allure_Report.svg"> Пример Allure-отчета
+## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logo/Allure_Report.svg"> [Пример Allure-отчета](https://jenkins.autotests.cloud/job/api_reqres/14/allure/)
 <p align="center">
 <img title="Allure Overview" src="media/screens/AllureOverview.png">
 </p>
@@ -97,7 +97,7 @@ gradle clean test
 <img title="Test Results in Alure" src="media/screens/AllureSuites.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="media/logo/AllureTestOps.svg"> Интеграция с Allure TestOps
+## <img width="4%" style="vertical-align:middle" title="Allure TestOps" src="media/logo/AllureTestOps.svg"> [Интеграция с Allure TestOps](https://allure.autotests.cloud/project/3607/launches)
 На вкладке <code>Dashboards</code> отображается:
 - Количество тест-кейсов и их статус
 - Соотношение ручных/автоматизированных тестов
@@ -111,7 +111,7 @@ gradle clean test
 <img title="Allure TestOps DashBoard" src="media/screens/LaunchesTestOps.png">
 </p>
 
-## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logo/Jira.svg"> Интеграция с Jira
+## <img width="4%" style="vertical-align:middle" title="Jira" src="media/logo/Jira.svg"> [Интеграция с Jira](https://jira.autotests.cloud/browse/HOMEWORK-844)
 Реализована интеграция <code>Allure TestOps</code> с <code>Jira</code>. В задаче отображаются прикреплённые к ней тест-кейсы, а также результаты запусков/прохождения тестов.
 <p align="center">
 <img title="Allure TestOps DashBoard" src="media/screens/Jira.png">
