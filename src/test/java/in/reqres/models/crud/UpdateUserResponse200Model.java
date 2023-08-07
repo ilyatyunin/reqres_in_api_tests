@@ -1,4 +1,4 @@
-package in.reqres.models.crud.updateuser;
+package in.reqres.models.crud;
 
 import lombok.Data;
 

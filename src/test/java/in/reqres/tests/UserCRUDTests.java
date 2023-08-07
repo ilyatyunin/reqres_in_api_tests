@@ -1,8 +1,8 @@
 package in.reqres.tests;
 
-import in.reqres.models.crud.createuser.CreateUserResponse201Model;
-import in.reqres.models.crud.readuser.ReadUserResponse200Model;
-import in.reqres.models.crud.updateuser.UpdateUserResponse200Model;
+import in.reqres.models.crud.CreateUserResponse201Model;
+import in.reqres.models.crud.ReadUserResponse200Model;
+import in.reqres.models.crud.UpdateUserResponse200Model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

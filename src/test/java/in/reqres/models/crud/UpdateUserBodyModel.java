@@ -1,9 +1,9 @@
-package in.reqres.models.crud.createuser;
+package in.reqres.models.crud;
 
 import lombok.Data;
 
 @Data
-public class CreateUserBodyModel {
+public class UpdateUserBodyModel {
     private String name;
     private String job;
 }

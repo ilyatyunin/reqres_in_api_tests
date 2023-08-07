@@ -1,6 +1,6 @@
 package in.reqres.tests;
 
-import in.reqres.models.readuser.ReadUsersResponse200Model;
+import in.reqres.models.ReadUsersResponse200Model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
