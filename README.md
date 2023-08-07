@@ -35,9 +35,6 @@ reqres.in — является тренировочным ресурсом дл�
 <a href="https://rest-assured.io/">
 <img width="6%" title="Rest-Assured" src="media/logo/RestAssured.png">
 </a>
-<a href="https://ru.selenide.org/">
-<img width="6%" title="Selenide" src="media/logo/Selenide.svg">
-</a>
 <a href="https://github.com/">
 <img width="6%" title="GitHub" src="media/logo/GitHub.svg">
 </a>
